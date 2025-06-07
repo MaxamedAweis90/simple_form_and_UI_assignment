@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formtest/components/promo_banner.dart';
-import 'package:formtest/page/test.dart';
+import 'package:formtest/components/restaurant_card.dart';
 
 class MainHomePage extends StatelessWidget {
   const MainHomePage({super.key});
@@ -8,7 +8,7 @@ class MainHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
@@ -19,9 +19,7 @@ class MainHomePage extends StatelessWidget {
             pinned: false,
             snap: false,
             automaticallyImplyLeading: false,
-
-            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-
+            backgroundColor: Color.fromARGB(255, 255, 255, 255),
             elevation: 0,
             flexibleSpace: LayoutBuilder(
               builder: (context, constraints) {
@@ -91,7 +89,7 @@ class MainHomePage extends StatelessWidget {
             ),
           ),
 
-          // Sticky search bar with no background
+          // Sticky search bar (exactly 70 px tall)
           SliverPersistentHeader(
             pinned: true,
             delegate: _StickySearchBarDelegate(),
@@ -103,7 +101,6 @@ class MainHomePage extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 const SizedBox(height: 15),
-                // 📢 Promo Banner
                 const PromoBanner(),
                 const SizedBox(height: 25),
 
@@ -151,7 +148,7 @@ class MainHomePage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/burger.png',
                   name: 'Burger King',
                   rating: 4.5,
@@ -159,70 +156,49 @@ class MainHomePage extends StatelessWidget {
                   distance: '8 km',
                   isNew: true,
                 ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
                   time: '20-25 mins',
                   distance: '7 km',
                 ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
                   time: '20-25 mins',
                   distance: '7 km',
                 ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
                   time: '20-25 mins',
                   distance: '7 km',
                 ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
                   time: '20-25 mins',
                   distance: '7 km',
                 ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
                   time: '20-25 mins',
                   distance: '7 km',
                 ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
                   time: '20-25 mins',
                   distance: '7 km',
                 ),
-                RestaurantCard(
-                  imagePath: 'assets/images/pizza.png',
-                  name: 'Pizzania',
-                  rating: 4.6,
-                  time: '20-25 mins',
-                  distance: '7 km',
-                ),
-                RestaurantCard(
-                  imagePath: 'assets/images/pizza.png',
-                  name: 'Pizzania',
-                  rating: 4.6,
-                  time: '20-25 mins',
-                  distance: '7 km',
-                ),
-                RestaurantCard(
-                  imagePath: 'assets/images/pizza.png',
-                  name: 'Pizzania',
-                  rating: 4.6,
-                  time: '20-25 mins',
-                  distance: '7 km',
-                ),
-                RestaurantCard(
+                const RestaurantCards(
                   imagePath: 'assets/images/pizza.png',
                   name: 'Pizzania',
                   rating: 4.6,
@@ -238,7 +214,7 @@ class MainHomePage extends StatelessWidget {
   }
 }
 
-// Sticky search bar delegate with no background
+// Sticky search bar delegate (now exactly 70 px tall)
 class _StickySearchBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
@@ -246,59 +222,66 @@ class _StickySearchBarDelegate extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(25, 10, 25, 0),
-      decoration: BoxDecoration(color: Color.fromARGB(255, 255, 255, 255)),
+    return SizedBox(
+      height: maxExtent, // = 70
       child: Container(
-        height: 50,
-        padding: const EdgeInsets.only(left: 15, right: 0),
-        decoration: BoxDecoration(
-          color: Colors.transparent, // Removed white background
-          border: Border.all(
-            color: const Color.fromARGB(255, 171, 179, 61).withOpacity(0.3),
-            width: 1,
+        padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+        color: const Color.fromARGB(255, 255, 255, 255),
+        child: Container(
+          height: 50,
+          padding: const EdgeInsets.only(left: 15),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border.all(
+              color: const Color.fromARGB(255, 171, 179, 61).withOpacity(0.3),
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(15),
           ),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          children: [
-            Icon(Icons.search, color: Colors.grey[600]),
-            const SizedBox(width: 5),
-            Expanded(
-              child: TextField(
-                textAlign: TextAlign.left,
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.zero,
-                  hintText: 'Search your food or restaurant',
-                  hintStyle: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 14,
-                    height: 1.0,
+          child: Row(
+            children: [
+              Icon(Icons.search, color: Colors.grey[600]),
+              const SizedBox(width: 5),
+              Expanded(
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                    hintText: 'Search your food or restaurant',
+                    hintStyle: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 14,
+                      height: 1.0,
+                    ),
+                    border: InputBorder.none,
                   ),
-                  border: InputBorder.none,
                 ),
               ),
-            ),
-            Container(
-              height: 100,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.black87,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: IconButton(
-                icon: Transform.rotate(
-                  angle: 1.5708,
-                  child: const Icon(Icons.tune, color: Colors.white, size: 30),
+              Container(
+                height: 50, // match the inner container’s 50 px
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  // Filter action
-                },
+                child: IconButton(
+                  icon: Transform.rotate(
+                    angle: 1.5708,
+                    child: const Icon(
+                      Icons.tune,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    // Filter action
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -316,7 +299,7 @@ class _StickySearchBarDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-// Category Widget
+// Category Widget (unchanged)
 class CategoryItem extends StatelessWidget {
   final String title;
 

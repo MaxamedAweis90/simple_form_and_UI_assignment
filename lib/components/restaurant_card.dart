@@ -1,7 +1,7 @@
 // restaurant_cards.dart
 import 'package:flutter/material.dart';
 
-class RestaurantCard extends StatelessWidget {
+class RestaurantCards extends StatelessWidget {
   final String imagePath;
   final String name;
   final double rating;
@@ -9,7 +9,7 @@ class RestaurantCard extends StatelessWidget {
   final String distance;
   final bool isNew;
 
-  const RestaurantCard({
+  const RestaurantCards({
     super.key,
     required this.imagePath,
     required this.name,

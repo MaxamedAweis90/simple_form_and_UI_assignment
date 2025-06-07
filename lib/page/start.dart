@@ -90,9 +90,9 @@ class StartPage extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => const MainScreen()),
+                          MaterialPageRoute(builder: (context) => MainScreen()),
                         );
                       },
                       style: OutlinedButton.styleFrom(

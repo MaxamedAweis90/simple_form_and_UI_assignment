@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formtest/page/Form.dart';
+import 'package:formtest/page/form.dart';
 
 import 'package:formtest/homepage.dart';
 import 'package:formtest/page/start.dart';
