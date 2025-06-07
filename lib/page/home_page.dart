@@ -15,7 +15,6 @@ class MainHomePage extends StatelessWidget {
           // Collapsible greeting section
           SliverAppBar(
             expandedHeight: 75,
-            floating: true,
             pinned: false,
             snap: false,
             automaticallyImplyLeading: false,

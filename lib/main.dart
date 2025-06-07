@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const AssignmentHomePage(),
         '/form': (context) => const MyCustomForm(),
-        '/fastfood': (context) => const StartPage(), // You’ll define this next
+        '/fastfood': (context) => const StartPage(), // You'll define this next
       },
     );
   }
